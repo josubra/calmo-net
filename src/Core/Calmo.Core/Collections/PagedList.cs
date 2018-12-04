@@ -2,13 +2,33 @@
 
 namespace System.Collections.Generic
 {
+	/// <summary>
+	/// Basic class for paged content
+	/// </summary>
+	/// <typeparam name="T">Type that will be paged</typeparam>
     public class PagedList<T> : IEnumerable<T>
     {
         private readonly IEnumerable<T> _members;
+		/// <summary>
+		/// Current active page
+		/// </summary>
         public int Page { get; private set; }
+		/// <summary>
+		/// The total amount of pages
+		/// </summary>
         public int TotalCount { get; private set; }
+		/// <summary>
+		/// The amount of items per page
+		/// </summary>
         public int PageSize { get; private set; }
 
+		/// <summary>
+		/// Create a new paged list
+		/// </summary>
+		/// <param name="members">Total items</param>
+		/// <param name="page">Current page</param>
+		/// <param name="totalCount">Total count</param>
+		/// <param name="pageSize">Page Size</param>
         public PagedList(IEnumerable<T> members, int page, int totalCount, int pageSize)
         {
             _members = members;

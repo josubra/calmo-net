@@ -3,6 +3,9 @@ using System.Net.Mail;
 
 namespace Calmo.Core.Net.Mail
 {
+	/// <summary>
+	/// Send mails using the default .NET Smtp client, all the network settings must be valid on web.config or app.config
+	/// </summary>
     public class MailSender
     {
         private readonly SmtpClient _smtpClient;
@@ -12,7 +15,17 @@ namespace Calmo.Core.Net.Mail
             this._smtpClient = new SmtpClient();
         }
 
-        public void Send(string toEmailAddress, string toDisplayName, string subject, string body, string ccEmailAddress = null, string ccDisplayName = null, string attachment = null)
+		/// <summary>
+		/// Send e-mail
+		/// </summary>
+		/// <param name="toEmailAddress">Recipient e-mail</param>
+		/// <param name="toDisplayName">Recipient display name</param>
+		/// <param name="subject">Subject</param>
+		/// <param name="body">Body</param>
+		/// <param name="ccEmailAddress">E-mails to send a copy to</param>
+		/// <param name="ccDisplayName">Copy To: Display Name</param>
+		/// <param name="attachment">Full path of attachment file to send</param>
+		public void Send(string toEmailAddress, string toDisplayName, string subject, string body, string ccEmailAddress = null, string ccDisplayName = null, string attachment = null)
         {
             if (String.IsNullOrWhiteSpace(toEmailAddress))
                 throw new ArgumentNullException("toEmailAddress");

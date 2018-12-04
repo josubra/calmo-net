@@ -2,11 +2,19 @@
 
 namespace System
 {
+	/// <summary>
+	/// Simple class to handle geo-location data
+	/// </summary>
     public class GeoPoint
     {
         public GeoPoint() { }
 
-        public GeoPoint(decimal latitude, decimal longitude)
+		/// <summary>
+		/// Initialize the object with new lag/lng
+		/// </summary>
+		/// <param name="latitude">latitude</param>
+		/// <param name="longitude">longitude</param>
+		public GeoPoint(decimal latitude, decimal longitude)
         {
             this.Latitude = latitude;
             this.Longitude = longitude;
@@ -15,7 +23,13 @@ namespace System
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
 
-        public static bool IsValid(decimal? latitude, decimal? longitude)
+		/// <summary>
+		/// Validate the lag/lng pair to see with they are empty or 0
+		/// </summary>
+		/// <param name="latitude">latitude</param>
+		/// <param name="longitude">longitude</param>
+		/// <returns></returns>
+		public static bool IsValid(decimal? latitude, decimal? longitude)
         {
             if (!latitude.HasValue || !longitude.HasValue)
                 return false;
@@ -26,6 +40,13 @@ namespace System
             return (latitude.Value >= -90m && latitude.Value <= 90) && (longitude.Value >= -180 && longitude.Value <= 180);
         }
 
+
+		/// <summary>
+		/// Calculate the distance between two geolocation points
+		/// </summary>
+		/// <param name="pointA">Point A</param>
+		/// <param name="pointB">Point B</param>
+		/// <returns></returns>
         public static double Distance(GeoPoint pointA, GeoPoint pointB)
         {
             Throw.IfArgumentNull(pointA, nameof(pointA));

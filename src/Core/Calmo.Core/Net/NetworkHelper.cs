@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace Calmo.Net
 {
+	/// <summary>
+	/// Network utilities
+	/// </summary>
     public class NetworkHelper
     {
+		/// <summary>
+		/// Get the machine MAC Address
+		/// </summary>
+		/// <returns>MAC Address from the first found network interface</returns>
         public static string GetMACAddress()
         {
             var nics = NetworkInterface.GetAllNetworkInterfaces();

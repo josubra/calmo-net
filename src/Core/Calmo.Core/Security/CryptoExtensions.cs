@@ -2,8 +2,16 @@
 
 namespace System.Security.Cryptography
 {
+	/// <summary>
+	/// Extensions for encryption
+	/// </summary>
     public static class CryptoExtensions
     {
+		/// <summary>
+		/// Apply default MD5 to a string
+		/// </summary>
+		/// <param name="value">Value that will be hashed</param>
+		/// <returns>Hash</returns>
         public static string ToMD5Hash(this string value)
         {
             if (value == null) return null;
@@ -18,6 +26,12 @@ namespace System.Security.Cryptography
             return sb.ToString();
         }
 
+		/// <summary>
+		/// Two-way encryption using a private key
+		/// </summary>
+		/// <param name="value">Value that will be encrypted</param>
+		/// <param name="privateKey">Encryption private key</param>
+		/// <returns>Cypher</returns>
         public static string Encrypt(this string value, string privateKey)
         {
             var toEncryptArray = Encoding.UTF8.GetBytes(value);
@@ -41,6 +55,12 @@ namespace System.Security.Cryptography
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
+		/// <summary>
+		/// Decrypt a value using a private key
+		/// </summary>
+		/// <param name="value">Cypher value that will be decrypted</param>
+		/// <param name="privateKey">Private encryption key</param>
+		/// <returns>Decrypted value</returns>
         public static string Decrypt(this string value, string privateKey)
         {
             var toEncryptArray = Convert.FromBase64String(value);

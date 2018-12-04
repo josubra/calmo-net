@@ -5,8 +5,16 @@ using System.IO;
 
 namespace Calmo.Core.Security
 {
+	/// <summary>
+	/// Utility to create simple captchas
+	/// </summary>
     public static class Captcha
     {
+		/// <summary>
+		/// Generate a new captcha image
+		/// </summary>
+		/// <param name="text">Text that was drawed in the image</param>
+		/// <returns>Stream with the bitmap</returns>
         public static Stream GetImage(out string text)
         {
             var random = new Random();

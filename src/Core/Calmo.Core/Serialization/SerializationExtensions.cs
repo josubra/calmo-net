@@ -12,8 +12,17 @@ using Newtonsoft.Json;
 
 namespace Calmo.Core.Serialization
 {
+	/// <summary>
+	/// Utilities for data serialization
+	/// </summary>
     public static class SerializationExtensions
     {
+		/// <summary>
+		/// Convert any object to a byte[]
+		/// </summary>
+		/// <typeparam name="T">Object type</typeparam>
+		/// <param name="objeto">Object</param>
+		/// <returns>Byte array</returns>
         public static byte[] ToBytes<T>(this T objeto)
         {
             if (objeto == null)
@@ -45,6 +54,12 @@ namespace Calmo.Core.Serialization
             return buffer;
         }
 
+		/// <summary>
+		/// Convert a byte[] to an object of type T
+		/// </summary>
+		/// <typeparam name="T">Object Type</typeparam>
+		/// <param name="bytes">Object as a byte[]</param>
+		/// <returns>T object</returns>
         public static T FromBytes<T>(this byte[] bytes)
         {
             if (bytes == null) return default(T);
@@ -79,6 +94,12 @@ namespace Calmo.Core.Serialization
             }
         }
 
+		/// <summary>
+		/// Convert an object of type T to a base 64 string
+		/// </summary>
+		/// <typeparam name="T">Object Type</typeparam>
+		/// <param name="objeto">Object Value</param>
+		/// <returns>Base 64 string</returns>
         public static string ToBase64<T>(this T objeto)
         {
             var bytes = ToBytes(objeto);
@@ -90,6 +111,13 @@ namespace Calmo.Core.Serialization
             return base64Text;
         }
 
+
+		/// <summary>
+		/// Convert a base 64 string to a object of type T
+		/// </summary>
+		/// <typeparam name="T">Object Type</typeparam>
+		/// <param name="conteudo">Base 64 string</param>
+		/// <returns>Object</returns>
         public static T FromBase64<T>(this string conteudo)
         {
             var binaryText = Base64ToString(conteudo);
@@ -116,6 +144,12 @@ namespace Calmo.Core.Serialization
             return returnValue;
         }
 
+		/// <summary>
+		/// Serialize a object of type T to a XML string
+		/// </summary>
+		/// <typeparam name="T">Object Type</typeparam>
+		/// <param name="objeto">Object Value</param>
+		/// <returns>Object XML string</returns>
         public static string ToXml<T>(this T objeto)
         {
             string result;
@@ -128,6 +162,12 @@ namespace Calmo.Core.Serialization
             return result;
         }
 
+		/// <summary>
+		/// Serialize an object of type T to a Stream
+		/// </summary>
+		/// <typeparam name="T">Object Type</typeparam>
+		/// <param name="obj">Object Value</param>
+		/// <param name="stream">Stream</param>
         public static void SerializeTo<T>(this T obj, Stream stream)
         {
 #if !__MOBILE__
@@ -144,6 +184,12 @@ namespace Calmo.Core.Serialization
 #endif
         }
 
+		/// <summary>
+		/// Deserialize an object of Type T from a Stream
+		/// </summary>
+		/// <typeparam name="T">Object Type</typeparam>
+		/// <param name="stream">Stream containing the object data</param>
+		/// <returns>Object T</returns>
         public static T Deserialize<T>(this Stream stream)
         {
 #if !__MOBILE__
