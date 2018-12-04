@@ -3,6 +3,9 @@ using Calmo.Core.Validator.Formats.Brazil;
 
 namespace Calmo.Core.Validator
 {
+	/// <summary>
+	/// Container for all string formatters used in brazilian values (documents, zip codes and phones)
+	/// </summary>
     public class BrazilianFormats
     {
         internal BrazilianFormats()

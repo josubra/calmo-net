@@ -2,6 +2,9 @@
 
 namespace Calmo.Core.Validator
 {
+	/// <summary>
+	/// Container for the brazilian documents validation rules
+	/// </summary>
     public class BrazilianDocuments
     {
         internal BrazilianDocuments()
@@ -9,7 +12,13 @@ namespace Calmo.Core.Validator
 
         }
 
+		/// <summary>
+		/// CPF Rules Definition
+		/// </summary>
         public CPFDocumentDefinition CPF = new CPFDocumentDefinition();
+		/// <summary>
+		/// CNPJ Rules Definition
+		/// </summary>
         public CNPJDocumentDefinition CNPJ = new CNPJDocumentDefinition();
     }
 }

@@ -2,9 +2,17 @@ using System;
 
 namespace Calmo.Core.Validator.Documents.Brazil
 {
-    public class CNPJDocumentDefinition : DocumentDefinition
+	/// <summary>
+	/// Rules to validate a brazilian CNPJ document
+	/// </summary>
+	public class CNPJDocumentDefinition : DocumentDefinition
     {
-        public override bool Validate(string value)
+		/// <summary>
+		/// Validate a given value against CNPJ rules
+		/// </summary>
+		/// <param name="value">string with the CNPJ to be validated</param>
+		/// <returns>if the given string is a valid CNPJ</returns>
+		public override bool Validate(string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return false;

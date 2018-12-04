@@ -2,6 +2,9 @@
 
 namespace Calmo.Core.Validator.Formats.Brazil
 {
+	/// <summary>
+	/// Definition for CEP (zip code) formatting
+	/// </summary>
     public class CEPFormatDefinition : FormatDefinition
     {
         private const string FORMAT_VALIDATION_REGEX = @"^\d\d\d\d\d\-\d\d\d$";
@@ -10,8 +13,12 @@ namespace Calmo.Core.Validator.Formats.Brazil
         {
             
         }
-
-        public override string Format(string value)
+		/// <summary>
+		/// Apply the CEP mask in a given value
+		/// </summary>
+		/// <param name="value">unformatted value</param>
+		/// <returns>Formatted value</returns>
+		public override string Format(string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return null;
@@ -26,6 +33,11 @@ namespace Calmo.Core.Validator.Formats.Brazil
             return value.Insert(5, "-");
         }
 
+		/// <summary>
+		/// Remove the CEP mask from a given value
+		/// </summary>
+		/// <param name="value">Formatted value</param>
+		/// <returns>Unformatted value</returns>
         public override string Unformat(string value)
         {
             if (String.IsNullOrWhiteSpace(value))

@@ -3,8 +3,16 @@ using System.Linq;
 
 namespace Calmo.Core.Validator.Documents.Brazil
 {
+	/// <summary>
+	/// Rules to validate a brazilian CPF document
+	/// </summary>
     public class CPFDocumentDefinition : DocumentDefinition
     {
+		/// <summary>
+		/// Validate a given value against CPF rules
+		/// </summary>
+		/// <param name="value">string with the CPF to be validated</param>
+		/// <returns>if the given string is a valid CPF</returns>
         public override bool Validate(string value)
         {
             if (String.IsNullOrEmpty(value))
