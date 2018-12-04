@@ -1,6 +1,6 @@
 ﻿namespace Calmo.Core.Validator.Formats
 {
-    public abstract class FormatDefinition
+	public abstract class FormatDefinition
     {
         private string Regex { get; }
 

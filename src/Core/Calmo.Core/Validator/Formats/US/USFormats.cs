@@ -3,7 +3,10 @@ using Calmo.Core.Validator.Formats.US;
 
 namespace Calmo.Core.Validator
 {
-    public class USFormats
+	/// <summary>
+	/// Container for all string formatters used in US values (documents, zip codes and phones)
+	/// </summary>
+	public class USFormats
     {
         internal USFormats()
         {

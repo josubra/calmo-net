@@ -2,7 +2,10 @@
 
 namespace Calmo.Core.Validator.Formats.Brazil
 {
-    public class PhoneFormatDefinition : FormatDefinition
+	/// <summary>
+	/// Definition for brazilian phone number formatting
+	/// </summary>
+	public class PhoneFormatDefinition : FormatDefinition
     {
         private const string FORMAT_VALIDATION_REGEX = @"(?:\+\d\d)*\s*(?:\(\d\d\))*\s*\d*\d\d\d\d\-*\d\d\d\d";
 
@@ -11,7 +14,12 @@ namespace Calmo.Core.Validator.Formats.Brazil
             
         }
 
-        public override string Format(string value)
+	    /// <summary>
+	    /// Apply the brazilian phone (mobile or otherwise) mask in a given value
+	    /// </summary>
+	    /// <param name="value">unformatted value</param>
+	    /// <returns>Formatted value</returns>
+		public override string Format(string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return null;
@@ -41,7 +49,12 @@ namespace Calmo.Core.Validator.Formats.Brazil
             return $"{value.Substring(0, 4)}-{value.Substring(4, 4)}";
         }
 
-        public override string Unformat(string value)
+		/// <summary>
+		/// Remove the brazilian phone (mobile or otherwise) mask from a given value
+		/// </summary>
+		/// <param name="value">Formatted value</param>
+		/// <returns>Unformatted value</returns>
+		public override string Unformat(string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return null;
@@ -49,6 +62,11 @@ namespace Calmo.Core.Validator.Formats.Brazil
             return value.Replace("-", String.Empty).Replace("(", String.Empty).Replace(")", String.Empty).Replace(" ", String.Empty).Replace("+", String.Empty);
         }
         
+		/// <summary>
+		/// Get the area code from a given formatted number
+		/// </summary>
+		/// <param name="value">formatted phone number</param>
+		/// <returns>The brazilian two digit area code</returns>
         public string GetAreaCode(string value)
         {
             if (String.IsNullOrWhiteSpace(value)) return null;
@@ -63,6 +81,11 @@ namespace Calmo.Core.Validator.Formats.Brazil
             return value.Substring(0, 2);
         }
 
+		/// <summary>
+		/// Remove the area code from a full phone number
+		/// </summary>
+		/// <param name="value">phone number</param>
+		/// <returns>Formatted phone number without area code</returns>
         public string GetNumberWithoutAreaCode(string value)
         {
             if (String.IsNullOrWhiteSpace(value)) return null;

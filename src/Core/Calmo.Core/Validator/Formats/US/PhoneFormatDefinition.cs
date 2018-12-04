@@ -2,7 +2,10 @@
 
 namespace Calmo.Core.Validator.Formats.US
 {
-    public class PhoneFormatDefinition : FormatDefinition
+	/// <summary>
+	/// Definition for united states phone number formatting
+	/// </summary>
+	public class PhoneFormatDefinition : FormatDefinition
     {
         private const string FORMAT_VALIDATION_REGEX = @"(?:\+\d)*\s*\(*\d{3}\)*\s*\d{3}-*\d{4}";
 
@@ -11,7 +14,12 @@ namespace Calmo.Core.Validator.Formats.US
             
         }
 
-        public override string Format(string value)
+	    /// <summary>
+	    /// Apply the US phone (mobile or otherwise) mask in a given value
+	    /// </summary>
+	    /// <param name="value">unformatted value</param>
+	    /// <returns>Formatted value</returns>
+		public override string Format(string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return null;
@@ -29,15 +37,25 @@ namespace Calmo.Core.Validator.Formats.US
             return $"({value.Substring(0, 3)}) {value.Substring(3, 3)}-{value.Substring(6, 4)}";
         }
 
-        public override string Unformat(string value)
+	    /// <summary>
+	    /// Remove the US phone (mobile or otherwise) mask from a given value
+	    /// </summary>
+	    /// <param name="value">Formatted value</param>
+	    /// <returns>Unformatted value</returns>
+		public override string Unformat(string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return null;
 
             return value.Replace("-", String.Empty).Replace("(", String.Empty).Replace(")", String.Empty).Replace(" ", String.Empty).Replace("+", String.Empty);
         }
-        
-        public string GetAreaCode(string value)
+
+		/// <summary>
+		/// Get the area code from a given formatted number
+		/// </summary>
+		/// <param name="value">formatted phone number</param>
+		/// <returns>The brazilian two digit area code</returns>
+		public string GetAreaCode(string value)
         {
             if (String.IsNullOrWhiteSpace(value)) return null;
 
