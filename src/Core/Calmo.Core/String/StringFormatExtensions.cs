@@ -10,9 +10,19 @@ using Newtonsoft.Json.Linq;
 
 namespace System
 {
+
+	/// <summary>
+	/// Tools for formating and validating strings in general
+	/// </summary>
     public static class StringFormatExtensions
     {
 #if !__MOBILE__
+		/// <summary>
+		/// Convert a given string into its Title Case variant using the current or a given culture
+		/// </summary>
+		/// <param name="value">value</param>
+		/// <param name="culture">culture to apply title case</param>
+		/// <returns>Title Case string</returns>
         public static string ToTitleCase(this string value, CultureInfo culture = null)
         {
             if (String.IsNullOrWhiteSpace(value))
@@ -25,6 +35,11 @@ namespace System
         }
 #endif
 
+		/// <summary>
+		/// Simple camal case formatter
+		/// </summary>
+		/// <param name="value">value to apply camel case</param>
+		/// <returns>string with camel case</returns>
         public static string ToCamelCaseWord(this string value)
         {
             if (value.ToUpper() == value)
@@ -151,16 +166,33 @@ namespace System
             return "";
         }
 
+		/// <summary>
+		/// Check if string length is GREATER THAN a given value
+		/// </summary>
+		/// <param name="value">string to be checked</param>
+		/// <param name="length">length that will be used to compare</param>
+		/// <returns>if string length is greater than a given length</returns>
         public static bool LengthGreaterThan(this string value, int length)
         {
             return value != null && value.Length > length;
         }
 
-        public static bool LengthGreaterThanOrEqual(this string value, int length)
+	    /// <summary>
+	    /// Check if string length is GREATER THAN OR EQUALS a given value
+	    /// </summary>
+	    /// <param name="value">string to be checked</param>
+	    /// <param name="length">length that will be used to compare</param>
+	    /// <returns>if string length is greater than or equals a given length</returns>
+		public static bool LengthGreaterThanOrEqual(this string value, int length)
         {
             return value != null && value.Length >= length;
         }
 
+		/// <summary>
+		/// Check if the string has the HTTP url prefix
+		/// </summary>
+		/// <param name="value">url to be validated</param>
+		/// <returns>if the value has 'http://' as a prefix</returns>
         public static bool IsValidUrlHttp(this string value)
         {
             if (String.IsNullOrWhiteSpace(value))
@@ -169,6 +201,11 @@ namespace System
             return value.ToLower().Contains("http://");
         }
 
+		/// <summary>
+		/// Check if the string value can be converted to a decimal Latitude value
+		/// </summary>
+		/// <param name="value">latitude as string</param>
+		/// <returns>is valid latitude</returns>
         public static bool IsValidLatitude(this string value)
         {
             if (String.IsNullOrWhiteSpace(value))
@@ -185,7 +222,12 @@ namespace System
             return false;
         }
 
-        public static bool IsValidLongitude(this string value)
+		/// <summary>
+		/// Check if the string value can be converted to a decimal Longitude value
+		/// </summary>
+		/// <param name="value">longitude as string</param>
+		/// <returns>is valid longitude</returns>
+		public static bool IsValidLongitude(this string value)
         {
             if (String.IsNullOrWhiteSpace(value))
                 return false;
@@ -201,6 +243,12 @@ namespace System
             return false;
         }
 
+		/// <summary>
+		/// Check if the string can be converted to a valid TimeSpan
+		/// </summary>
+		/// <param name="text">TimeSpan as string</param>
+		/// <param name="timeSpan">TimeSpan where the converted value will be saved</param>
+		/// <returns>If the string is a valid TimeSpan</returns>
         public static bool IsValidDayTime(this string text, out TimeSpan timeSpan)
         {
             timeSpan = TimeSpan.MinValue;
@@ -230,6 +278,11 @@ namespace System
             return true;
         }
 
+		/// <summary>
+		/// Check if the provided string is HTML
+		/// </summary>
+		/// <param name="value">String to be validated as HTML</param>
+		/// <returns>if the string contains HTML Data</returns>
         public static bool IsHTMLContent(this string value)
         {
             var regex = new Regex(@"<\s*([^ >]+)[^>]*>.*?<\s*/\s*\1\s*>");

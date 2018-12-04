@@ -4,6 +4,9 @@ using System.IO;
 
 namespace System
 {
+	/// <summary>
+	/// HTML Helpers
+	/// </summary>
     public class HtmlUtility
     {
         private enum UnicodeDecodingConformance
@@ -17,6 +20,11 @@ namespace System
         private static readonly char[] HtmlEntityEndingChars = { ';', '&' };
         private static readonly UnicodeDecodingConformance _htmlDecodeConformance = UnicodeDecodingConformance.Auto;
 
+		/// <summary>
+		/// Decode a HTML string, removing reserved characters codes
+		/// </summary>
+		/// <param name="value">HTML string</param>
+		/// <returns>Decoded string</returns>
         public static string HtmlDecode(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -31,6 +39,11 @@ namespace System
             return stringWriter.ToString();
         }
 
+		/// <summary>
+		/// Check if the given HTML string requires is using reserved characters and needs to be decoded
+		/// </summary>
+		/// <param name="s">HTML string</param>
+		/// <returns>If needs decoding</returns>
         private static bool StringRequiresHtmlDecoding(string s)
         {
             if (HtmlUtility._htmlDecodeConformance == UnicodeDecodingConformance.Compat)
